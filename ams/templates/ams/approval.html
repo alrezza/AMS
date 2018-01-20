@@ -1,0 +1,38 @@
+{% extends 'ams/base.html' %}
+{% block subordinates_active %}active{% endblock %}
+
+{% block body %}
+<div class="approval-container container-fluid">
+
+    <h2>{{ assets.0.owner }}'s asset</h2>
+    {% if assets %}
+        <table class="table table-hover"><br/>
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Asset</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            {% for asset in assets %}
+                <tbody>
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ asset.asset }}</td>
+                        <td>{{ asset.status }}</td>
+                        <td>
+                            <a href="{% url 'ams:approved' asset.id %}" class="btn-approval">
+                                <span class="approval {% if asset.status == 'Approved' %}approved{% endif %}">Approve</span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h1>{{ asset.owner }} doesn't have any assets</h1>
+    {% endif %}
+
+</div>
+{% endblock %}

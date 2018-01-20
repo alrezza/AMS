@@ -1,0 +1,32 @@
+{% extends 'ams/base.html' %}
+{% block assets_active %}active{% endblock %}
+
+{% block body %}
+<div class="assets-container container-fluid">
+
+    <!-- Asset -->
+    {% if assets %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Asset</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            {% for asset in assets %}
+                <tbody>
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ asset.asset }}</td>
+                        <td>{{ asset.status }}</td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h1>You don't have any assets</h1>
+    {% endif %}
+
+</div>
+{% endblock %}

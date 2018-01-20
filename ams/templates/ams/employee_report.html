@@ -1,0 +1,34 @@
+{% extends 'ams/base.html' %}
+{% block employee_report_active %}active{% endblock %}
+
+{% block body %}
+<div class="employee-report-container container-fluid">
+
+    <!-- Employee Report -->
+    {% if all_employees %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Subordinates</th>
+                </tr>
+            </thead>
+            {% for employee in all_employees %}
+                <tbody>
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ employee.employee_name }}</td>
+                        <td>{{ employee.department }}</td>
+                        <td>{{ employee.subordinates }}</td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h1>There is no employees</h1>
+    {% endif %}
+
+</div>
+{% endblock %}

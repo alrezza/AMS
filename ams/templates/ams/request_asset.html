@@ -1,0 +1,32 @@
+{% extends 'ams/base.html' %}
+{% block title %}Request Asset{% endblock %}
+{% block request_asset_active %}active{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+
+    <!-- Request Asset -->
+    <div class="row">
+        <div class="col-sm-12 col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>Request asset</h3><br/>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% include 'ams/form_template.html' %}
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

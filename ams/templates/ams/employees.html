@@ -1,0 +1,40 @@
+{% extends 'ams/base.html' %}
+{% block employees_active %}active{% endblock %}
+
+{% block body %}
+<div class="employees-container container-fluid">
+
+    <!-- Employees -->
+    {% if all_employees %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Manager</th>
+                </tr>
+            </thead>
+            {% for employee in all_employees %}
+                <tbody>
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            <a href="{% url 'ams:employee_detail' employee.id %}">{{ employee.employee_name }}</a>
+                        </td>
+                        <td>{{ employee.department }}</td>
+                        {% if employee.manager is None %}
+                            <td>-</td>
+                        {% else %}
+                            <td>{{ employee.manager }}</td>
+                        {% endif %}
+                    </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h1>There is no employees</h1>
+    {% endif %}
+
+</div>
+{% endblock %}

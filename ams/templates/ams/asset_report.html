@@ -1,0 +1,34 @@
+{% extends 'ams/base.html' %}
+{% block asset_report_active %}active{% endblock %}
+
+{% block body %}
+<div class="asset-report-container container-fluid">
+
+    <!-- Asset Report -->
+    {% if all_departments %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Employees</th>
+                    <th scope="col">Assets</th>
+                </tr>
+            </thead>
+            {% for dept in all_departments %}
+                <tbody>
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ dept.department_name }}</td>
+                        <td>{{ dept.employees }}</td>
+                        <td>{{ dept.assets }}</td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h1>There is no departments</h1>
+    {% endif %}
+
+</div>
+{% endblock %}

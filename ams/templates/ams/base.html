@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Asset Management System{% endblock %}</title>
+    {% load staticfiles %}
+    <link href="{% static 'favicon.png' %}" rel="shortcut icon" type="image/png"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Open+Sans" rel="stylesheet" type="text/css">
+    <link href="{% static 'ams/style.css' %}" rel="stylesheet" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <!-- Header -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'ams:index' %}">Asset Management System</a>
+        </div>
+
+        <!-- Items -->
+        <div class="collapse navbar-collapse" id="topNavBar">
+            <ul class="nav navbar-nav">
+                <li class="{% block assets_active %}{% endblock %}">
+                    <a href="{% url 'ams:index' %}">
+                        <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>&nbsp; Your Asset
+                    </a>
+                </li>
+                <li class="{% block subordinates_active %}{% endblock %}">
+                    <a href="{% url 'ams:subordinates' %}">
+                        <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>&nbsp; Your Subordinates
+                    </a>
+                </li>
+                <li class="{% block employees_active %}{% endblock %}">
+                    <a href="{% url 'ams:employees' %}">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; All Employees
+                    </a>
+                </li>
+                <li class="{% block employee_report_active %}{% endblock %}">
+                    <a href="{% url 'ams:employee_report' %}">
+                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp; Employee Report
+                    </a>
+                </li>
+                <li class="{% block asset_report_active %}{% endblock %}">
+                    <a href="{% url 'ams:asset_report' %}">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span>&nbsp; Asset Report
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="{% block request_asset_active %}{% endblock %}">
+                    <a href="{% url 'ams:request_asset' %}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Request Asset
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'ams:logout_user' %}">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+{% block body %}
+{% endblock %}
+</body>
+</html>

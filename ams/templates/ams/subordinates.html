@@ -1,0 +1,36 @@
+{% extends 'ams/base.html' %}
+{% block subordinates_active %}active{% endblock %}
+
+{% block body %}
+<div class="subordinates-container container-fluid">
+
+    <!-- Subordinates -->
+    {% if all_subordinates %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Booked asset</th>
+                </tr>
+            </thead>
+            {% for employee in all_subordinates %}
+                <tbody>
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ employee.employee_name }}</td>
+                        {% if employee.booked %}
+                            <td>{{ employee.booked }}&nbsp; (<a href="{% url 'ams:approval' employee.id %}">Approval</a>)</td>
+                        {% else %}
+                            <td>{{ employee.booked }}</td>
+                        {% endif %}
+                    </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h1>You don't have any subordinates</h1>
+    {% endif %}
+
+</div>
+{% endblock %}
